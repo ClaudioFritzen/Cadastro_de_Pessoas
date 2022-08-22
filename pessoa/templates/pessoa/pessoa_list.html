@@ -1,1 +1,24 @@
-{% extends 'pessoa_list.html' %}
+{% extends 'main/base.html' %}
+
+{% block content %}
+
+<table>
+    <thead>
+        <tr>
+            <th> Nome</th>
+            <th> Data de nascimento </th>
+            <th>Ativa</th>
+        </tr>
+        <tbody>
+            {% for pessoa in object_list %}
+
+                {{ pessoa }}
+
+            {% endfor %}
+        
+        </tbody>
+    </thead>
+</table>
+
+
+{% endblock %}
