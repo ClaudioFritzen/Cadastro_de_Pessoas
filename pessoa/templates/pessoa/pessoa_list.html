@@ -1,6 +1,10 @@
 {% extends 'main/base.html' %}
 
     {% block content %}
+    <form method="GET">
+        <input type="text"  name="buscarNome" placeholder="Buscar por nome" />
+        <input type="submit" value="Buscar" />
+    </form>
     <a href= "{% url 'pessoa.novo' %}" > Novo </a>
         <table>
             <thead>
@@ -8,12 +12,13 @@
                     <th> Nome</th>
                     <th> Data de nascimento </th>
                     <th>Ativa</th>
+                    <th>Ações</th>
                 </tr>
                 <tbody>
                     {% for pessoa in object_list %}
                         <tr>
                             <td>{{ pessoa.nome_completo }}</td>
-                            <td>{{ pessoa.data_nascimento }}</td> <!-- |date: "SHORT_DATE_FORMAT" serve para alterar o formato da data -->
+                            <td>{{ pessoa.data_nascimento| date:"d/m/Y" }}</td> <!-- |date: "SHORT_DATE_FORMAT" serve para alterar o formato da data -->
                             <td>
                                 {% if pessoa.ativa %}
                                     SIM
@@ -22,8 +27,13 @@
                                 {% endif %}
                             </td>
 
+                            <td>
+                                <a href="{% url 'pessoa.editar' pessoa.pk %}"> Editar </a>
+                                <a href="{% url 'pessoa.remover' pessoa.pk %}"> Remover </a>
+                            </td>
+
                         </tr>
-                    
+                        
 
                     {% endfor %}
                 
