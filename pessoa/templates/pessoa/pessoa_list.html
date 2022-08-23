@@ -1,24 +1,35 @@
 {% extends 'main/base.html' %}
 
-{% block content %}
+    {% block content %}
+    <a href= "{% url 'pessoa.novo' %}" > Novo </a>
+        <table>
+            <thead>
+                <tr>
+                    <th> Nome</th>
+                    <th> Data de nascimento </th>
+                    <th>Ativa</th>
+                </tr>
+                <tbody>
+                    {% for pessoa in object_list %}
+                        <tr>
+                            <td>{{ pessoa.nome_completo }}</td>
+                            <td>{{ pessoa.data_nascimento }}</td> <!-- |date: "SHORT_DATE_FORMAT" serve para alterar o formato da data -->
+                            <td>
+                                {% if pessoa.ativa %}
+                                    SIM
+                                {% else %}
+                                    NÃO
+                                {% endif %}
+                            </td>
 
-<table>
-    <thead>
-        <tr>
-            <th> Nome</th>
-            <th> Data de nascimento </th>
-            <th>Ativa</th>
-        </tr>
-        <tbody>
-            {% for pessoa in object_list %}
+                        </tr>
+                    
 
-                {{ pessoa }}
-
-            {% endfor %}
-        
-        </tbody>
-    </thead>
-</table>
+                    {% endfor %}
+                
+                </tbody>
+            </thead>
+        </table>
 
 
-{% endblock %}
+    {% endblock %}
