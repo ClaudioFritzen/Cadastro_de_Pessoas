@@ -1,11 +1,7 @@
-from ast import Return
-from pyexpat import model
 from django.shortcuts import render
-
+from django.http import Http404, HttpResponse, JsonResponse
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
-from django.urls import reverse_lazy
-
-from . models import Pessoa 
+from . models import Pessoa, Contato 
 from .forms import PessoaForm
 
 # Create your views here.
@@ -38,3 +34,11 @@ class PessoaDeleteView(DeleteView):
     model = Pessoa
     success_url = '/pessoas/'
     
+
+
+#criando contato
+def contatos(request, pk_pessoa):
+    contatos = Contato.objects.filter(pessoa = pk_pessoa)
+    return render(request, 'contato/contato_list.html', {'contatos': contatos})
+
+

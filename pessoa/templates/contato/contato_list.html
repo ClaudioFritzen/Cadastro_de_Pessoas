@@ -1,0 +1,32 @@
+{% extends 'main/base.html' %}
+
+    {% block content %}
+
+    <form method="GET">
+        <input type="text"  name="buscarNome" placeholder="Buscar por nome" />
+        <input type="submit" value="Buscar" />
+    </form>
+
+    <table>
+        <thead>
+            <tr>
+                <th> Nome</th>
+                <th> Data de nascimento </th>
+                <th> Telefone </th>
+                <th> Ações </th>
+            </tr>
+        </tread>
+        <tbody>
+            {% for contato in contatos %}
+                <tr>
+                    <td>{{ contato.nome }}</td>
+                    <td>{{ contato.email }}</td>
+                    <td>{{ contato.telefone }}</td>
+                </tr>
+            {% endfor %}
+        
+        </tbody>
+    </table>
+
+
+    {% endblock %}
