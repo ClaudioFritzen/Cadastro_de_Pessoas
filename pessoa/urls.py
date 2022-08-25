@@ -13,6 +13,6 @@ urlpatterns = [
     path('<int:pk_pessoa>/contatos/', views.contatos, name="pessoa.contatos"),
     path('<int:pk_pessoa>/contato_novo/', views.contato_novo, name="contato.novo"),
 
-    #path('<int:pk_pessoa>/contato/<int:pk>/editar/', views.contato_editar, name="contato.editar"),
-    #path('<int:pk_pessoa>/contato/<int:pk>/remover/', views.contato_remover, name="contato.remover"),
+    path('<int:pk_pessoa>/contato/<int:pk>/editar/', views.contato_editar, name="contato.editar"),
+    path('<int:pk_pessoa>/contato/<int:pk>/remover/', views.contato_remover, name="contato.remover"),
 ]

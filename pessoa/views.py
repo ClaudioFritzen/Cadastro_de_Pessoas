@@ -1,11 +1,12 @@
 
-from audioop import reverse
+
 from django.shortcuts import render, redirect, get_object_or_404
-from django.http import Http404, HttpResponse, JsonResponse
+from django.http import Http404, HttpResponse, JsonResponse 
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from . models import Pessoa, Contato 
 from .forms import PessoaForm, ContatoForm
 
+from django.urls import reverse
 # Create your views here.
 
 class ListaPessoaView(ListView):
@@ -56,7 +57,7 @@ def contato_novo(request, pk_pessoa):
 
     return render(request, 'contato/contato_form.html', {'form': form})
 
-""" def contato_editar(request, pk_pessoa, pk):
+def contato_editar(request, pk_pessoa, pk):
     contato = get_object_or_404(Contato, pk=pk)
     form = ContatoForm(instance=contato)
     if request.method== "POST":
@@ -65,9 +66,9 @@ def contato_novo(request, pk_pessoa):
             form.save()
             return redirect(reverse('pessoa.contatos', args=['pk_pessoa']))
 
-    return render(request, 'contato/contato_form.html', {'form': form}) """
+    return render(request, 'contato/contato_form.html', {'form': form})
 
-""" def contato_remover(request, pk_pessoa, pk):
+def contato_remover(request, pk_pessoa, pk):
     contato = get_object_or_404(Contato, pk=pk)
     contato.delete()
-    return redirect(reverse('pessoas.contatos', args=[pk_pessoa])) """
+    return redirect(reverse('pessoa.contatos', args=[pk_pessoa]))
