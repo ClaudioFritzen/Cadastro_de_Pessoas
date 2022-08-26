@@ -9,7 +9,11 @@ class PessoaAdmin(admin.ModelAdmin):
         'ativa'
     ]
     list_filter = [
-        'ativa'
+        'ativa',
+        'data_nascimento'
+    ]
+    list_field = [
+        'nome_completo'
     ]
 
 admin.site.register(Pessoa, PessoaAdmin)
