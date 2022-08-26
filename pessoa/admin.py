@@ -8,6 +8,9 @@ class PessoaAdmin(admin.ModelAdmin):
         'data_nascimento',
         'ativa'
     ]
+    list_filter = [
+        'ativa'
+    ]
 
 admin.site.register(Pessoa, PessoaAdmin)
 admin.site.register(Contato)
