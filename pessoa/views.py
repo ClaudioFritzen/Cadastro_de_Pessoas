@@ -5,7 +5,7 @@ from django.http import Http404, HttpResponse, JsonResponse
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from . models import Pessoa, Contato 
 from .forms import PessoaForm, ContatoForm
-
+from django.http.response import HttpResponseNotAllowed
 from django.urls import reverse
 # Create your views here.
 
@@ -15,6 +15,7 @@ class ListaPessoaView(ListView):
 
     def get_queryset(self):
         queryset = super().get_queryset()
+        queryset = queryset.filter(usuario=self.request.user)
         filtro_nome = self.request.GET.get('buscarNome') or None
 
         if filtro_nome:
@@ -22,11 +23,17 @@ class ListaPessoaView(ListView):
 
         return queryset
 
+
+
 class PessoaCreateView(CreateView):
     model = Pessoa
     form_class = PessoaForm
     #url de sucesso para 
     success_url = '/pessoas/'
+
+    def form_valid(self, form):
+        form.instance.usuario = self.request.user
+        return super().form_valid(form)
 
 class PessoaUpdateView(UpdateView):
     model = Pessoa
